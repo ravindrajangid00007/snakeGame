@@ -15,7 +15,7 @@ let scr = document.getElementById('score');
 var highScore = 0 ;
 var highScr = document.getElementById('high-score') ;
 
-if(localStorage.getItem('hs') === "[object Undefined]"){
+if(localStorage.getItem('hs') === "[object Undefined]" || localStorage.getItem('hs') == null){
     localStorage.setItem('hs' , highScore) ;
 }
 highScr.innerHTML = "HighScore: " + localStorage.getItem('hs') ;
