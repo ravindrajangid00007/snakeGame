@@ -15,11 +15,11 @@ let scr = document.getElementById('score');
 var highScore = 0 ;
 var highScr = document.getElementById('high-score') ;
 
-if(localStorage.getItem('hs') == undefined){
+if(localStorage.getItem('hs') === "[object Undefined]"){
     localStorage.setItem('hs' , highScore) ;
 }
 highScr.innerHTML = "HighScore: " + localStorage.getItem('hs') ;
-
+console.log(localStorage.getItem('hs'));
 let lastPaintTime = 0;
 
 //Game functions 
@@ -53,7 +53,7 @@ function gameEngine() {
         musicSound.pause();
         inputDir = {x: 0 , y: 0};
         
-        if(score > highScore){
+        if(score > localStorage.getItem('hs')){
             highScore = score ;
             localStorage.setItem('hs' , highScore) ;
         }
