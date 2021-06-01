@@ -8,14 +8,14 @@
     width: 100vw;
     
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
 }
 
 #board{
     background-color: transparent;
-    width: 95vh;
-    height: 95vh;
+    width: 90vh;
+    height: 90vh;
     background-image: url("images/WhatsApp\ Image\ 2021-05-27\ at\ 09.14.07.jpeg");
     background-size: contain;
     background-repeat: no-repeat;
@@ -40,32 +40,4 @@
 .food{
     background-color: orange;
     border-radius: 30%;
-}
-
-
-#score{
-    height: 125px;
-    width: 200px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    margin-top: 100px;
-    font-size: 50px;
-    font-weight: 800;
-}
-
-#high-score{
-    height: 125px;
-    width: 200px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    margin-top: 100px;
-    font-size: 50px;
-    font-weight: 800;
-}
 }

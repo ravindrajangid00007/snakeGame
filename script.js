@@ -9,11 +9,16 @@ let snakePosition = [{ x: 10 , y: 10}] ;
 let foodPosition = {x: 12 , y: 13} ;
 var board = document.getElementById('board') ;
 let speed = 5 ;
+var score = 0 ;
+let scr = document.getElementById('score');
 
+var highScore = 0 ;
+var highScr = document.getElementById('high-score') ;
 
-
-
-
+if(localStorage.getItem('hs') == undefined){
+    localStorage.setItem('hs' , highScore) ;
+}
+highScr.innerHTML = "HighScore: " + localStorage.getItem('hs') ;
 
 let lastPaintTime = 0;
 
@@ -21,12 +26,13 @@ let lastPaintTime = 0;
 
 function main(ctime){
     window.requestAnimationFrame(main);
+   
     if((ctime - lastPaintTime)/1000 < 1/speed){
         return ;
     }
-    lastPaintTime = ctime ;
-    gameEngine();
+    lastPaintTime = ctime ; // lasttime = 5000  ctime - 5000
     
+    gameEngine() ;
 }
 function isCollide(sa){
     if(sa[0].x >= 18 || sa[0].x <= 0  || sa[0].y >= 18 || sa[0].y <= 0){
@@ -46,7 +52,15 @@ function gameEngine() {
         gameOverSound.play();
         musicSound.pause();
         inputDir = {x: 0 , y: 0};
+        
+        if(score > highScore){
+            highScore = score ;
+            localStorage.setItem('hs' , highScore) ;
+        }
         alert('Game over!!');
+        score = 0 ;
+        scr.innerText = "Score: " + score ;
+        highScr.innerText = "High-Score: " + localStorage.getItem('hs') ;
         snakePosition = [{ x: 10 , y: 10}];
         musicSound.play();
     }
@@ -54,6 +68,8 @@ function gameEngine() {
     //food is eaten and regenerate food 
     if(foodPosition.x === snakePosition[0].x && foodPosition.y === snakePosition[0].y){
         foodSound.play();
+        score = score + 1 ;
+        scr.innerText = "Score: " + score ;
         snakePosition.unshift({x: snakePosition[0].x+inputDir.x  , y: snakePosition[0].y+inputDir.y});
         foodPosition.x = Math.round(Math.random() * (16 - 2) + 2);
         foodPosition.y = Math.round(Math.random() * (16 - 2) + 2);
